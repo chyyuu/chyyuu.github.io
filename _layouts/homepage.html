@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% assign is_zh = false %}
+{% if page.lang == "zh" %}
+{% assign is_zh = true %}
+{% endif %}
+<html lang="{% if is_zh %}zh-CN{% else %}en-US{% endif %}">
+  <head>
+    <title>{{ page.title | default: site.title }} | {% if is_zh %}{{ site.department_zh }}，{{ site.university_zh }}{% else %}{{ site.department }}, {{ site.university }}{% endif %}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    {% if site.keywords %}
+    <meta name="keywords" content="{{ site.keywords }}">
+    {% endif %}
+    {% if site.canonical %}
+    <link rel="canonical" href="{{ site.canonical }}"/>
+    {% endif %}
+
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    {% if site.font == "Sans Serif" %}
+    <link rel="stylesheet" href="{{ "/assets/css/font_sans_serif.css" | relative_url }}">
+    {% else %}
+    <link rel="stylesheet" href="{{ "/assets/css/font.css" | relative_url }}">
+    {% endif %}
+    {% if site.auto_dark_mode %}
+    <link rel="stylesheet" href="{{ "/assets/css/homepage.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/publications.css" | relative_url }}">
+    {% else %}
+    <link rel="stylesheet" href="{{ "/assets/css/homepage-no-dark-mode.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/publications-no-dark-mode.css" | relative_url }}">
+    {% endif %}
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+        {% if site.avatar %}
+        <a class="image avatar"><img src="{{ site.avatar | relative_url }}" alt="avatar" /></a>
+        {% endif %}
+
+        <h1 class="person-name">
+          {% if is_zh and site.title_zh %}
+          <span class="name-zh">{{ site.title_zh }}</span>
+          <span>{{ site.title }}</span>
+          {% else %}
+          <span>{{ site.title }}</span>
+          {% if site.title_zh %}
+          <span class="name-zh">{{ site.title_zh }}</span>
+          {% endif %}
+          {% endif %}
+        </h1>
+
+        {% if site.position %}
+        <position>{% if is_zh %}{{ site.position_zh }}{% else %}{{ site.position }}{% endif %}</position>
+        {% endif %}
+
+        <div class="affiliation-links">
+        {% if is_zh %}
+        {% if site.university %}
+        <a href="{{ site.university_link }}" rel="noopener"><autocolor>{{ site.university_zh }}</autocolor></a>
+        {% endif %}
+        {% if site.department %}
+        <a href="{{ site.department_link }}" rel="noopener"><autocolor>{{ site.department_zh }}</autocolor></a>
+        {% endif %}
+        {% else %}
+        {% if site.department %}
+        <a href="{{ site.department_link }}" rel="noopener"><autocolor>{{ site.department }}</autocolor></a>
+        {% endif %}
+        {% if site.university %}
+        <a href="{{ site.university_link }}" rel="noopener"><autocolor>{{ site.university }}</autocolor></a>
+        {% endif %}
+        {% endif %}
+        </div>
+
+        {% if is_zh %}
+          {% assign nav_items = site.nav_zh %}
+        {% else %}
+          {% assign nav_items = site.nav_en %}
+        {% endif %}
+        {% if nav_items %}
+        <nav class="page-nav" aria-label="Main navigation">
+          {% for item in nav_items %}
+          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          {% endfor %}
+        </nav>
+        {% endif %}
+        <br>
+
+      </header>
+      <section>
+
+      {% if page.alternate_lang_url %}
+      <div class="lang-switch">
+        {% if is_zh %}
+        <a href="{{ page.alternate_lang_url | relative_url }}">English</a> | 中文
+        {% else %}
+        English | <a href="{{ page.alternate_lang_url | relative_url }}">中文</a>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if page.show_contact %}
+      <div class="main-contact" aria-label="Contact information">
+        {% if site.email %}
+        <a class="contact-item" href="mailto:{{ site.email }}">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <span>{{ site.email }}</span>
+        </a>
+        {% endif %}
+        {% if site.github_link %}
+        <a class="contact-item" href="{{ site.github_link }}" rel="noopener">
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span>{{ site.github_link | remove: "https://" }}</span>
+        </a>
+        {% endif %}
+        {% if site.phone %}
+        <a class="contact-item" href="tel:{{ site.phone | remove: " " | remove: "(" | remove: ")" }}">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <span>{{ site.phone }}</span>
+        </a>
+        {% endif %}
+        {% if site.address %}
+        <div class="contact-item contact-address">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <span>{% if is_zh %}{{ site.address_zh }}{% else %}{{ site.address }}{% endif %}</span>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {{ content }}
+
+      <br>
+
+      {% if site.enable_footnote %}
+      <p><small>Powered by Jekyll.</small></p>
+      {% endif %}
+
+      </section>
+      <footer>
+        
+      </footer>
+    </div>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+    {% if site.google_analytics %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{ site.google_analytics }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
+  </body>
+</html>

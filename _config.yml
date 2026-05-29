@@ -1,0 +1,72 @@
+# Basic Information
+title: Yu Chen
+title_zh: 陈渝
+position: Tenured Associate Professor
+position_zh: 长聘副教授
+department: Department of Computer Science and Technology
+department_zh: 计算机科学与技术系
+department_link: https://www.cs.tsinghua.edu.cn/
+university: Tsinghua University
+university_zh: 清华大学
+university_link: https://www.tsinghua.edu.cn/
+email: yuchen@tsinghua.edu.cn
+phone: (+86) 13911178569
+address: Room 915, Building 1, Ziqiang Technology Building, Tsinghua University, Beijing 100084, China.
+address_zh: 北京市清华大学自强科技楼 1 号楼 915 室，100084
+
+# Search Engine Optimization
+keywords: Yu Chen, 陈渝, operating systems, Tsinghua University, system software
+description: Personal homepage of Yu Chen, Department of Computer Science and Technology, Tsinghua University.
+canonical: ""
+
+# Links
+github_link: https://github.com/chyyuu
+
+# Images
+avatar: /assets/img/profile.png
+
+# Footnote
+enable_footnote: true
+
+# Auto Dark Mode
+auto_dark_mode: true
+
+# Font
+font: "Sans Serif"
+
+# Google Analytics ID
+google_analytics:
+
+# Navigation links.
+nav_en:
+  - title: Home
+    url: /
+  - title: Publications
+    url: /publications/
+  - title: Teaching
+    url: /teaching/
+  - title: Join
+    url: /join/
+nav_zh:
+  - title: 首页
+    url: /zh/
+  - title: 论文
+    url: /zh/publications/
+  - title: 教学
+    url: /zh/teaching/
+  - title: 招生
+    url: /zh/join/
+
+# The following files will be removed from the generated website.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - README_zh_Hans.md
+  - README_zh_Hant.md
+  - README_de.md
+  - LICENSE
+  - CNAME
+  - html_source_file/
+  - .bundle/
+  - vendor/
